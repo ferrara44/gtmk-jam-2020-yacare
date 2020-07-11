@@ -7,9 +7,10 @@
 radius = 26.1666
 
 [node name="Ship" type="KinematicBody2D"]
-scale = Vector2( 0.836618, 0.984951 )
+scale = Vector2( 0.836618, 0.980358 )
 script = ExtResource( 1 )
-fire_rate = 1.0
+speed = 150
+rotation_speed = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -18,7 +19,9 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2( 1.00465, 1.02309 )
 current = true
+zoom = Vector2( 0.5, 0.5 )
 
 [node name="Right" type="Position2D" parent="."]
 position = Vector2( 20, 0 )
@@ -34,4 +37,11 @@ rotation = 3.14159
 [node name="GunTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_right = 4.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
