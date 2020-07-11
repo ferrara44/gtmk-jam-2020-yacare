@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Background/testBackground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/ship.tscn" type="PackedScene" id=2]
+
+[node name="Test Drive" type="Node2D"]
+light_mask = 0
+position = Vector2( 450.72, 351.494 )
+
+[node name="ship" parent="." instance=ExtResource( 2 )]
+
+[node name="testBackground" parent="." instance=ExtResource( 1 )]

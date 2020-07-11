@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/saliendo.png-1d8a9b0be40ff808f55035d22f1f3c30.stex"
+path="res://.import/canon.png-a1b1503ae4b12734f41699c1d2107b14.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://saliendo.png"
-dest_files=[ "res://.import/saliendo.png-1d8a9b0be40ff808f55035d22f1f3c30.stex" ]
+source_file="res://Assets/Images/canon.png"
+dest_files=[ "res://.import/canon.png-a1b1503ae4b12734f41699c1d2107b14.stex" ]
 
 [params]
 

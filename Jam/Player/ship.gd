@@ -29,6 +29,6 @@ func _physics_process(delta):
 	velocity += acc * delta
 	rotation += rotation_dir * rotation_speed * delta
 
-	move_and_slide(velocity, Vector2(0, 0))
+	var _movement = move_and_slide(velocity, Vector2(0, 0))
 
 	velocity = velocity.linear_interpolate(Vector2(0,0), friction * delta)
