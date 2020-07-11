@@ -18,3 +18,11 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="Right" type="Position2D" parent="."]
+position = Vector2( 16.0587, -0.717912 )
+
+[node name="gun_timer" type="Timer" parent="."]
+
+[node name="Left" type="Position2D" parent="."]
+position = Vector2( -23.1176, 0 )
