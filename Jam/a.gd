@@ -1,7 +1,7 @@
 extends KinematicBody2D
-export (int) var speed = 500
-export (float) var rotation_speed = 1.5
-export (float) var friction = 0.65
+export (int) var speed = 400
+export (float) var rotation_speed = 2
+export (float) var friction = 0.78
 
 var velocity = Vector2()
 var rotation_dir = 0
@@ -20,8 +20,7 @@ func _physics_process(delta):
 		rotation_dir -= 1
 	if Input.is_action_pressed('ui_up'):
 		acc = Vector2(0, -speed).rotated(rotation)
-	elif Input.is_action_pressed('ui_down'):
-		acc = Vector2(0, speed).rotated(rotation)
+
 	else:
 		acc = Vector2(0, 0)
 

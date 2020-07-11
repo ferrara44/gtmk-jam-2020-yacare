@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://a.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://canon.png" type="Texture" id=2]
+[ext_resource path="res://barovia.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
 
 [node name="Node2D" type="Node2D"]
+light_mask = 0
+position = Vector2( 450.72, 351.494 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 scale = Vector2( 0.836618, 0.984951 )
@@ -17,3 +20,16 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 461.131, 317.5 )
+texture = ExtResource( 3 )
