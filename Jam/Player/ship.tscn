@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Images/canon.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 32.0
+radius = 26.1666
 
 [node name="Ship" type="KinematicBody2D"]
 scale = Vector2( 0.836618, 0.984951 )
@@ -20,9 +20,10 @@ shape = SubResource( 1 )
 current = true
 
 [node name="Right" type="Position2D" parent="."]
-position = Vector2( 16.0587, -0.717912 )
-
-[node name="gun_timer" type="Timer" parent="."]
+position = Vector2( 20, 0 )
 
 [node name="Left" type="Position2D" parent="."]
-position = Vector2( -23.1176, 0 )
+position = Vector2( -20, 0 )
+rotation = 3.14159
+
+[node name="gun_timer" type="Timer" parent="."]

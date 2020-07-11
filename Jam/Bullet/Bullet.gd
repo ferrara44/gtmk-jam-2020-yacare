@@ -5,14 +5,11 @@ var velocity = Vector2()
 
 func start(_position, _direction):
 	position = _position
-	velocity = Vector2(speed, 0).rotated(rotation)
+	velocity = Vector2(speed, 0).rotated(_direction)
 	rotation = _direction
 
 func _process(delta):
 	position += velocity * delta
-
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
