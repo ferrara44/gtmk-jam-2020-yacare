@@ -29,9 +29,15 @@ func shoot():
 	#$LaserSound.play()
 
 func _process(delta):
+<<<<<<< HEAD
+	get_input()
+
+func get_input():
+=======
 	bulletloop()
 
 func bulletloop():
+>>>>>>> juanpi
 	if Input.is_action_just_pressed("ui_select"):
 		shoot()
 

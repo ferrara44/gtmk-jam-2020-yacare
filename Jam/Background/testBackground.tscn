@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Images/barovia.png" type="Texture" id=1]
+
+[node name="testBackground" type="CanvasLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.466667, 0.466667, 0.466667, 0.290196 )
+position = Vector2( 461.131, 317.5 )
+texture = ExtResource( 1 )
