@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Background/testBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/ship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Main/testDrive.gd" type="Script" id=3]
 [ext_resource path="res://Main/pause.gd" type="Script" id=4]
+[ext_resource path="res://Main/KeyTest.gd" type="Script" id=5]
 
 [node name="Test Drive" type="Node2D"]
 light_mask = 0
 script = ExtResource( 3 )
 
 [node name="ship" parent="." instance=ExtResource( 2 )]
-scale = Vector2( 1, 1 )
 
 [node name="testBackground" parent="." instance=ExtResource( 1 )]
 
@@ -23,4 +23,7 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource( 5 )
 [connection signal="shoot" from="ship" to="." method="_on_ship_shoot"]
