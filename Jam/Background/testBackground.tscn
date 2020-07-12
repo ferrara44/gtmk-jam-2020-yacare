@@ -10,5 +10,4 @@
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color( 0.466667, 0.466667, 0.466667, 0.290196 )
-position = Vector2( 461.131, 317.5 )
 texture = ExtResource( 1 )
