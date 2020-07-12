@@ -26,20 +26,20 @@ func _process(_delta):
 	get_input()
 
 func get_input():
-	if (Input.is_action_pressed("cannon_front") && can_shoot):
+	if (Input.is_action_pressed("front_gun") && can_shoot):
 		shoot($Top)
-	if (Input.is_action_pressed("cannon_left") && can_shoot):
+	if (Input.is_action_pressed("left_gun") && can_shoot):
 		shoot($Left)
-	if (Input.is_action_pressed("cannon_right") && can_shoot):
+	if (Input.is_action_pressed("right_gun") && can_shoot):
 		shoot($Right)
 	
 
 func _physics_process(delta):
 	rotation_dir = 0
 	if Input.is_action_pressed('turn_right'):
-		rotation_dir += 1
+		rotation_dir += 0.7
 	if Input.is_action_pressed('turn_left'):
-		rotation_dir -= 1
+		rotation_dir -= 0.7
 	if Input.is_action_pressed('thrust'):
 		acc = Vector2(0, -speed).rotated(rotation)
 	else:
