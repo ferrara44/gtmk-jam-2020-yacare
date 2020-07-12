@@ -5,16 +5,14 @@ var profile = {
 	'thrust': null,
 	'turn_left': null,
 	'turn_right': null,
-	'cannon_front': null,
-	'cannon_left': null,
-	'cannon_right': null
+	'front_gun': null,
+	'left_gun': null,
+	'right_gun': null
 }
 var rand = RandomNumberGenerator.new()
 var needKey = ''
-var loaded = false
 
 func _ready():
-	loaded = true
 	randomize();
 	# Set all keys with codes from 65 to 90 as alive.
 	# Keys can either be "alive", "active", or "dead"
@@ -46,11 +44,42 @@ func check_death():
 	pass
 
 func _process(_delta):
-	if loaded:
-		if (profile['thrust'] == null):
-			get_node('../CanvasLayer/thrustlabel').visible =  true
-			needKey = 'thrust'
-#			print('Loco dame cañamo')
+		#	[FRONT_GUN]
+	if (profile['right_gun'] == null):
+		get_node('../CanvasLayer/needRightGun').visible =  true
+		needKey = 'right_gun'
+	if (profile['right_gun'] != null):
+		get_node('../CanvasLayer/needRightGun').visible =  false
+		#	[LEFT_GUN]
+	if (profile['left_gun'] == null):
+		get_node('../CanvasLayer/needLeftGun').visible =  true
+		needKey = 'left_gun'
+	if (profile['left_gun'] != null):
+		get_node('../CanvasLayer/needLeftGun').visible =  false
+	#	[FRONT_GUN]
+	if (profile['front_gun'] == null):
+		get_node('../CanvasLayer/needFrontGun').visible =  true
+		needKey = 'front_gun'
+	if (profile['front_gun'] != null):
+		get_node('../CanvasLayer/needFrontGun').visible =  false
+#	[TURN_RIGHT]
+	if (profile['turn_right'] == null):
+		get_node('../CanvasLayer/needTurnRight').visible =  true
+		needKey = 'turn_right'
+	if (profile['turn_right'] != null):
+		get_node('../CanvasLayer/needTurnRight').visible =  false
+#	[TURN_LEFT]
+	if (profile['turn_left'] == null):
+		get_node('../CanvasLayer/needTurnLeft').visible =  true
+		needKey = 'turn_left'
+	if (profile['turn_left'] != null):
+		get_node('../CanvasLayer/needTurnLeft').visible =  false
+#	[THRUST]
+	if (profile['thrust'] == null):
+		get_node('../CanvasLayer/needThrust').visible =  true
+		needKey = 'thrust'
+	if (profile['thrust'] != null):
+		get_node('../CanvasLayer/needThrust').visible =  false
 
 func change_action_key(action_name, key_scancode):
 	erase_action_events(action_name)
@@ -58,6 +87,8 @@ func change_action_key(action_name, key_scancode):
 	new_event.set_scancode(key_scancode)
 	InputMap.action_add_event(action_name, new_event)
 	profile[action_name] = key_scancode
+	keys[key_scancode] = action_name
+	needKey = ''
 
 func erase_action_events(action_name):
 	var input_events = InputMap.get_action_list(action_name)
@@ -69,7 +100,6 @@ func _input(event):
 		if event is InputEventKey and event.pressed and (event.scancode >= 65 && event.scancode <= 90):
 			if (keys[event.scancode] == "alive"):
 				change_action_key(needKey, event.scancode)
-				needKey = ''
 				return
 
 #		take_damage(24)

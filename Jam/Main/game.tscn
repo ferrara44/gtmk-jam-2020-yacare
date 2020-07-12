@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main/KeyTest.gd" type="Script" id=1]
 [ext_resource path="res://Main/pause.gd" type="Script" id=2]
@@ -6,12 +6,17 @@
 [ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/ship.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Main/game.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Fonts/prstartk.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 7 )
 
 [node name="Game" type="Node2D"]
 light_mask = 0
 script = ExtResource( 6 )
 
 [node name="Ship" parent="." instance=ExtResource( 5 )]
+position = Vector2( -2.51984, 0 )
 
 [node name="TestBackground" parent="." instance=ExtResource( 3 )]
 
@@ -36,25 +41,74 @@ position = Vector2( 377.615, -309.231 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="thrustlabel" type="Label" parent="CanvasLayer"]
-visible = false
-margin_left = 754.235
-margin_top = 355.994
-margin_right = 892.235
-margin_bottom = 369.994
-text = "Press a Key for Thrust"
+[node name="needThrust" type="Label" parent="CanvasLayer"]
+margin_left = 753.541
+margin_top = 355.197
+margin_right = 977.541
+margin_bottom = 371.197
+custom_fonts/font = SubResource( 1 )
+text = "Press [THRUST]"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemList" type="ItemList" parent="CanvasLayer"]
-margin_left = 9.15527e-05
-margin_top = 741.662
-margin_right = 40.0001
-margin_bottom = 781.662
-rect_scale = Vector2( 25.1171, 1.42088 )
-max_columns = 26
-same_column_width = true
+[node name="needTurnLeft" type="Label" parent="CanvasLayer"]
+margin_left = 754.291
+margin_top = 376.429
+margin_right = 1026.29
+margin_bottom = 392.429
+custom_fonts/font = SubResource( 1 )
+text = "Press [LEFT TURN]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="needTurnRight" type="Label" parent="CanvasLayer"]
+margin_left = 754.235
+margin_top = 398.312
+margin_right = 1042.23
+margin_bottom = 414.312
+custom_fonts/font = SubResource( 1 )
+text = "Press [RIGHT TURN]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="needFrontGun" type="Label" parent="CanvasLayer"]
+margin_left = 754.235
+margin_top = 418.802
+margin_right = 1026.23
+margin_bottom = 434.802
+custom_fonts/font = SubResource( 1 )
+text = "Press [FRONT GUN]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="needLeftGun" type="Label" parent="CanvasLayer"]
+margin_left = 754.235
+margin_top = 439.293
+margin_right = 1010.23
+margin_bottom = 455.293
+custom_fonts/font = SubResource( 1 )
+text = "Press [LEFT GUN]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="needRightGun" type="Label" parent="CanvasLayer"]
+margin_left = 754.235
+margin_top = 459.338
+margin_right = 1026.23
+margin_bottom = 475.338
+custom_fonts/font = SubResource( 1 )
+text = "Press [RIGHT GUN]"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
