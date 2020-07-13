@@ -46,40 +46,40 @@ func check_death():
 func _process(_delta):
 		#	[FRONT_GUN]
 	if (profile['right_gun'] == null):
-		get_node('../CanvasLayer/needRightGun').visible =  true
+		get_node('../CanvasLayer/Prompts/needRightGun').visible =  true
 		needKey = 'right_gun'
 	if (profile['right_gun'] != null):
-		get_node('../CanvasLayer/needRightGun').visible =  false
+		get_node('../CanvasLayer/Prompts/needRightGun').visible =  false
 		#	[LEFT_GUN]
 	if (profile['left_gun'] == null):
-		get_node('../CanvasLayer/needLeftGun').visible =  true
+		get_node('../CanvasLayer/Prompts/needLeftGun').visible =  true
 		needKey = 'left_gun'
 	if (profile['left_gun'] != null):
-		get_node('../CanvasLayer/needLeftGun').visible =  false
+		get_node('../CanvasLayer/Prompts/needLeftGun').visible =  false
 	#	[FRONT_GUN]
 	if (profile['front_gun'] == null):
-		get_node('../CanvasLayer/needFrontGun').visible =  true
+		get_node('../CanvasLayer/Prompts/needFrontGun').visible =  true
 		needKey = 'front_gun'
 	if (profile['front_gun'] != null):
-		get_node('../CanvasLayer/needFrontGun').visible =  false
+		get_node('../CanvasLayer/Prompts/needFrontGun').visible =  false
 #	[TURN_RIGHT]
 	if (profile['turn_right'] == null):
-		get_node('../CanvasLayer/needTurnRight').visible =  true
+		get_node('../CanvasLayer/Prompts/needTurnRight').visible =  true
 		needKey = 'turn_right'
 	if (profile['turn_right'] != null):
-		get_node('../CanvasLayer/needTurnRight').visible =  false
+		get_node('../CanvasLayer/Prompts/needTurnRight').visible =  false
 #	[TURN_LEFT]
 	if (profile['turn_left'] == null):
-		get_node('../CanvasLayer/needTurnLeft').visible =  true
+		get_node('../CanvasLayer/Prompts/needTurnLeft').visible =  true
 		needKey = 'turn_left'
 	if (profile['turn_left'] != null):
-		get_node('../CanvasLayer/needTurnLeft').visible =  false
+		get_node('../CanvasLayer/Prompts/needTurnLeft').visible =  false
 #	[THRUST]
 	if (profile['thrust'] == null):
-		get_node('../CanvasLayer/needThrust').visible =  true
+		get_node('../CanvasLayer/Prompts/needThrust').visible =  true
 		needKey = 'thrust'
 	if (profile['thrust'] != null):
-		get_node('../CanvasLayer/needThrust').visible =  false
+		get_node('../CanvasLayer/Prompts/needThrust').visible =  false
 
 func change_action_key(action_name, key_scancode):
 	erase_action_events(action_name)
@@ -102,5 +102,7 @@ func _input(event):
 				change_action_key(needKey, event.scancode)
 				return
 
+func _on_damage_player():
+	take_damage(1)
 #		take_damage(24)
 #		print(OS.get_scancode_string(event.scancode), " ", event.scancode)

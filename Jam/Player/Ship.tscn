@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Ship.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/ship.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 28.922
+height = 11.9407
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 479.516
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 296.204
+
+[node name="Ship" type="KinematicBody2D"]
+collision_layer = 2147483777
+collision_mask = 2147483777
+collision/safe_margin = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+speed = 150
+rotation_speed = 1.0
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 2 )
+
+[node name="PlayerHitBox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+scale = Vector2( 1.19125, 1.32641 )
+shape = SubResource( 1 )
+
+[node name="Right" type="Position2D" parent="."]
+position = Vector2( 40, 0 )
+z_index = -1
+
+[node name="Top" type="Position2D" parent="."]
+position = Vector2( 0, -40 )
+rotation = -1.5708
+z_index = -1
+
+[node name="Left" type="Position2D" parent="."]
+position = Vector2( -40, 0 )
+rotation = 3.14159
+z_index = -1
+
+[node name="GunTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_right = 4.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
+
+[node name="Attractor" type="Area2D" parent="."]
+position = Vector2( 0, -1.88776 )
+space_override = 2
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 300.0
+linear_damp = 0.5
+angular_damp = 0.5
+collision_layer = 2
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attractor"]
+shape = SubResource( 2 )
+
+[node name="Repeller" type="Area2D" parent="."]
+space_override = 2
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = -300.0
+angular_damp = 0.0
+collision_layer = 64
+collision_mask = 2147483680
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Repeller"]
+shape = SubResource( 3 )
+[connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
