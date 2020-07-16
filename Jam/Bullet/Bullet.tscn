@@ -3,16 +3,16 @@
 [ext_resource path="res://Bullet/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprite Sheets/player_bullet.png" type="Texture" id=5]
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.7522, 10.6261 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 9 ) ],
+"frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -20,15 +20,15 @@ animations = [ {
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 32
-collision_mask = 2147483681
+collision_mask = 2147483680
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 250
+speed = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0.0417132, 0.0834272 )
@@ -36,6 +36,6 @@ scale = Vector2( 1.67628, -1.08973 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = 1.5708
-frames = SubResource( 10 )
+frames = SubResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

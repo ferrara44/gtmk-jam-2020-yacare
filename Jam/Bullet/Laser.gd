@@ -10,15 +10,10 @@ func start(_position, _direction):
 
 func _process(delta):
 	position += velocity * delta
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 	
 func _on_Laser_body_entered(body):
-	print(body.name)
-	if body.name == "Ship":
-		print("ship hit")
+	if "Ship" in body.name:
+		body.takeDamage()
 		queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():

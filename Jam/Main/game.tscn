@@ -1,14 +1,25 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Main/KeyTest.gd" type="Script" id=1]
 [ext_resource path="res://Main/pause.gd" type="Script" id=2]
 [ext_resource path="res://Background/testBackground.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Main/Enemies.gd" type="Script" id=4]
 [ext_resource path="res://Player/Ship.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Main/game.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Fonts/prstartk.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Main/keyMap.gd" type="Script" id=8]
-[ext_resource path="res://Bullet/Laser.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Main/GameOver.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Images/buffering.png" type="Texture" id=10]
+[ext_resource path="res://Main/Sprite.gd" type="Script" id=11]
+[ext_resource path="res://Main/Node2D.gd" type="Script" id=12]
+[ext_resource path="res://Main/enemiesKilled.gd" type="Script" id=13]
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 7 )
@@ -16,15 +27,25 @@ font_data = ExtResource( 7 )
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 7 )
 
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 7 )
+
 [node name="Game" type="Node2D"]
 light_mask = 0
 script = ExtResource( 6 )
 
 [node name="Ship" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, 0 )
 
 [node name="TestBackground" parent="." instance=ExtResource( 3 )]
 
-[node name="Pause" type="Control" parent="."]
+[node name="KeyMapper" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="CanvasLayer"]
 pause_mode = 2
 margin_right = 40.0
 margin_bottom = 40.0
@@ -33,10 +54,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="KeyMapper" type="Node" parent="."]
-script = ExtResource( 1 )
+[node name="Node2D" type="Node2D" parent="CanvasLayer/Pause"]
+script = ExtResource( 12 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="EndGame" type="Control" parent="CanvasLayer/Pause/Node2D"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="RichTextLabel" parent="CanvasLayer/Pause/Node2D/EndGame"]
+margin_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[color=red]GAME OVER[/color]"
+text = "GAME OVER"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Pause/Node2D"]
+margin_left = -90.0
+margin_top = -330.0
+margin_right = 110.0
+margin_bottom = -266.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/normal_font = SubResource( 4 )
+text = "GAME PAUSED"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Pause"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="Prompts" type="Control" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0.784314 )
@@ -130,26 +190,29 @@ __meta__ = {
 }
 
 [node name="keyMap" type="RichTextLabel" parent="CanvasLayer/Control"]
+pause_mode = 2
+anchor_right = 50.0
 margin_left = 50.052
 margin_top = 156.918
 margin_right = 367.052
 margin_bottom = 867.918
 custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="enemiesKilled" type="RichTextLabel" parent="CanvasLayer"]
+margin_right = 200.0
+margin_bottom = 70.0
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Enemies" type="Node" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 362.448, -254.846 )
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 362.448, -254.846 )
-
-[node name="Laser" parent="." instance=ExtResource( 9 )]
-position = Vector2( 3.07108, -101.231 )
-collision_layer = 4
-collision_mask = 32
+script = ExtResource( 4 )
 [connection signal="shoot" from="Ship" to="." method="_on_ship_shoot"]

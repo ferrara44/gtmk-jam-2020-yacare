@@ -5,7 +5,7 @@ signal shoot
 export (int) var speed = 400
 export (float) var rotation_speed = 2
 export (float) var friction = 0.78
-export (float) var fire_rate = 1
+export (float) var fire_rate = 0.5
 export (PackedScene) var Bullet = preload("res://Bullet/Bullet.tscn")
 var can_shoot = true
 var guns = []
@@ -52,3 +52,6 @@ func _physics_process(delta):
 
 func _on_GunTimer_timeout():
 	can_shoot = true
+
+func takeDamage():
+	get_node("../KeyMapper").take_damage(1)

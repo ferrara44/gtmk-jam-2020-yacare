@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Introducción no loop.wav-a8fc033acc12a94751e3bb5be0bd871b.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Introducción no loop.wav"
+dest_files=[ "res://.import/Introducción no loop.wav-a8fc033acc12a94751e3bb5be0bd871b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

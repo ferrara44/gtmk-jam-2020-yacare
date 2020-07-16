@@ -23,13 +23,16 @@ func take_damage(dmg):
 	# Hits a random non-dead key.
 #	for i in range (0,dmg):
 	var i = 0
+	var j = 0
 	while (i<dmg):
+		if j>100: break
 		var target = rand.randi_range(65,90)
 		if (keys[target] == "dead"):
-			pass
+			j+=1
 		else:
 			if (keys[target] != "dead" && keys[target] != "alive"):
-				change_action_key(keys[target], null)
+				print(OS.get_scancode_string(target)," ",keys[target])
+				erase_action_events(keys[target])
 			keys[target] = "dead"
 			i+=1
 	check_death()
@@ -39,9 +42,9 @@ func check_death():
 	# if there are none the game's over.
 	for i in range (65,91):
 		if (keys[i] != "dead"):
-			return
+			return (false)
 	#TODO: destroy ship and game over
-	pass
+	return (true)
 
 func _process(_delta):
 		#	[FRONT_GUN]
@@ -94,6 +97,7 @@ func erase_action_events(action_name):
 	var input_events = InputMap.get_action_list(action_name)
 	for event in input_events:
 		InputMap.action_erase_event(action_name, event)
+	profile[action_name] = null
 
 func _input(event):
 	if (needKey != ''):
@@ -101,8 +105,3 @@ func _input(event):
 			if (keys[event.scancode] == "alive"):
 				change_action_key(needKey, event.scancode)
 				return
-
-func _on_damage_player():
-	take_damage(1)
-#		take_damage(24)
-#		print(OS.get_scancode_string(event.scancode), " ", event.scancode)
