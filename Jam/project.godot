@@ -17,7 +17,10 @@ _global_script_class_icons={
 
 config/name="Jam"
 run/main_scene="res://Main/game.tscn"
-config/icon="res://Assets/Images/icon.png"
+
+[autoload]
+
+Global="*res://Global.tscn"
 
 [display]
 
@@ -82,3 +85,4 @@ pause={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.156863, 0.286275, 0.364706, 1 )

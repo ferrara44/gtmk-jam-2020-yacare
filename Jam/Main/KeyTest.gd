@@ -23,13 +23,16 @@ func take_damage(dmg):
 	# Hits a random non-dead key.
 #	for i in range (0,dmg):
 	var i = 0
+	var j = 0
 	while (i<dmg):
+		if j>100: break
 		var target = rand.randi_range(65,90)
 		if (keys[target] == "dead"):
-			pass
+			j+=1
 		else:
 			if (keys[target] != "dead" && keys[target] != "alive"):
-				change_action_key(keys[target], null)
+				print(OS.get_scancode_string(target)," ",keys[target])
+				erase_action_events(keys[target])
 			keys[target] = "dead"
 			i+=1
 	check_death()
@@ -39,47 +42,47 @@ func check_death():
 	# if there are none the game's over.
 	for i in range (65,91):
 		if (keys[i] != "dead"):
-			return
+			return (false)
 	#TODO: destroy ship and game over
-	pass
+	return (true)
 
 func _process(_delta):
 		#	[FRONT_GUN]
 	if (profile['right_gun'] == null):
-		get_node('../CanvasLayer/needRightGun').visible =  true
+		get_node('../CanvasLayer/Prompts/needRightGun').visible =  true
 		needKey = 'right_gun'
 	if (profile['right_gun'] != null):
-		get_node('../CanvasLayer/needRightGun').visible =  false
+		get_node('../CanvasLayer/Prompts/needRightGun').visible =  false
 		#	[LEFT_GUN]
 	if (profile['left_gun'] == null):
-		get_node('../CanvasLayer/needLeftGun').visible =  true
+		get_node('../CanvasLayer/Prompts/needLeftGun').visible =  true
 		needKey = 'left_gun'
 	if (profile['left_gun'] != null):
-		get_node('../CanvasLayer/needLeftGun').visible =  false
+		get_node('../CanvasLayer/Prompts/needLeftGun').visible =  false
 	#	[FRONT_GUN]
 	if (profile['front_gun'] == null):
-		get_node('../CanvasLayer/needFrontGun').visible =  true
+		get_node('../CanvasLayer/Prompts/needFrontGun').visible =  true
 		needKey = 'front_gun'
 	if (profile['front_gun'] != null):
-		get_node('../CanvasLayer/needFrontGun').visible =  false
+		get_node('../CanvasLayer/Prompts/needFrontGun').visible =  false
 #	[TURN_RIGHT]
 	if (profile['turn_right'] == null):
-		get_node('../CanvasLayer/needTurnRight').visible =  true
+		get_node('../CanvasLayer/Prompts/needTurnRight').visible =  true
 		needKey = 'turn_right'
 	if (profile['turn_right'] != null):
-		get_node('../CanvasLayer/needTurnRight').visible =  false
+		get_node('../CanvasLayer/Prompts/needTurnRight').visible =  false
 #	[TURN_LEFT]
 	if (profile['turn_left'] == null):
-		get_node('../CanvasLayer/needTurnLeft').visible =  true
+		get_node('../CanvasLayer/Prompts/needTurnLeft').visible =  true
 		needKey = 'turn_left'
 	if (profile['turn_left'] != null):
-		get_node('../CanvasLayer/needTurnLeft').visible =  false
+		get_node('../CanvasLayer/Prompts/needTurnLeft').visible =  false
 #	[THRUST]
 	if (profile['thrust'] == null):
-		get_node('../CanvasLayer/needThrust').visible =  true
+		get_node('../CanvasLayer/Prompts/needThrust').visible =  true
 		needKey = 'thrust'
 	if (profile['thrust'] != null):
-		get_node('../CanvasLayer/needThrust').visible =  false
+		get_node('../CanvasLayer/Prompts/needThrust').visible =  false
 
 func change_action_key(action_name, key_scancode):
 	erase_action_events(action_name)
@@ -94,6 +97,7 @@ func erase_action_events(action_name):
 	var input_events = InputMap.get_action_list(action_name)
 	for event in input_events:
 		InputMap.action_erase_event(action_name, event)
+	profile[action_name] = null
 
 func _input(event):
 	if (needKey != ''):
@@ -101,6 +105,3 @@ func _input(event):
 			if (keys[event.scancode] == "alive"):
 				change_action_key(needKey, event.scancode)
 				return
-
-#		take_damage(24)
-#		print(OS.get_scancode_string(event.scancode), " ", event.scancode)
